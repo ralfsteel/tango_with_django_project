@@ -1,0 +1,21 @@
+{% extends 'rango/base.html' %}
+{% block body_block %}
+
+        <head>
+
+        <title>Rango</title>
+    </head>
+
+    <body>
+        <h1>Add a Page</h1>
+
+        <form id="page_form" method="post" action="/rango/add_page/">
+
+            <input type="submit" name="submit" value="Create Page" />
+        </form>
+
+    </body>
+
+
+
+{% endblock %}

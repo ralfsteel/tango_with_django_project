@@ -1,0 +1,51 @@
+{% extends 'rango/base.html' %}
+{% block title %}{{ category_name }}{% endblock %}
+{% block body_block %}
+
+<div class = "hero-unit">
+    <h1>{{ category_name }}</h1>
+    <div>
+        <p>
+            <b id="like_count">{{ category.likes }}</b> people like this category
+
+            {% if user.is_authenticated %}
+            <button id ="likes" data-catid="{{category.id}}" class="btn btn-mini btn-primary" type="button">Like</button>
+            {% endif %}
+        </p>
+    </div>
+
+    {% if pages %}
+    <ul>
+        {% for page in pages %}
+        <li>
+            <a href="/rango/goto/?page_id={{page.id}}">{{page.title}}</a>
+            {% if page.views > 1 %}
+            - ({{ page.views }} views)
+            {% elif page.views == 1 %}
+            - ({{ page.views }} view)
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <strong>No pages currently in category.</strong><br/>
+    {% endif %}
+</div>
+
+      <div class="container-fluid">
+
+          {% if result_list %}
+
+      <div style="clear: both;">
+          <ol>
+            {% for result in result_list %}
+         <li>
+            <strong><a href="{{ result.link }}">{{ result.title }}</a></strong><br />
+            <em>{{ result.summary }}</em>
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endif %}
+          </div>
+{% endblock %}
